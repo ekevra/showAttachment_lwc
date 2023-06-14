@@ -1,0 +1,24 @@
+<aura:component description="showParentAttachments" implements="force:hasRecordId, flexipage:availableForRecordHome">
+    <aura:attribute name="caseRecord" type="Object"/>
+    <aura:attribute name="showComponent" type="Boolean" default="false"/>
+
+    <force:recordData aura:id="{!v.recordId}"
+                      fields="AccountId"
+                      recordId="{!v.recordId}"
+                      targetFields="{!v.caseRecord}"
+    />
+
+    <lightning:button
+            variant="brand"
+            class="slds-m-left_x-small"
+            label="Show parent attachments"
+            title="Show parent attachments"
+            onclick="{!c.handleClick}"
+    />
+
+    <aura:if isTrue="{!v.showComponent}">
+        <div class="slds-m-top_small">
+            <c:showAttachments aura:id="lWCComponent2" recordId="{!v.caseRecord.AccountId}"></c:showAttachments>
+        </div>
+    </aura:if>
+</aura:component>
